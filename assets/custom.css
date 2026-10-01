@@ -1,0 +1,167 @@
+/* Custom CSS for Premium Design - Smart Career Recommendation */
+
+/* Load modern typography */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/* Core Body Layout styling overrides */
+.main {
+    background-color: #0B0E14;
+    color: #E2E8F0;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Sidebar Custom Styling */
+section[data-testid="stSidebar"] {
+    background-color: #07090E !important;
+    border-right: 1px solid #1E293B;
+}
+
+section[data-testid="stSidebar"] .stMarkdown {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Premium Linear Gradient Heading classes */
+.gradient-header {
+    background: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 2.6rem;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+    margin-top: -30px;
+}
+
+.gradient-subheader {
+    background: linear-gradient(135deg, #818CF8 0%, #C084FC 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    letter-spacing: -0.02em;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+/* Glassmorphism Cards */
+.tech-card {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tech-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 15px 35px -10px rgba(99, 102, 241, 0.2);
+}
+
+.card-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+}
+
+.card-subtitle {
+    font-size: 0.9rem;
+    color: #A5B4FC;
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card-desc {
+    font-size: 0.95rem;
+    color: #94A3B8;
+    line-height: 1.6;
+}
+
+/* Custom Skill Badges */
+.skill-badge {
+    display: inline-block;
+    background: rgba(99, 102, 241, 0.08);
+    color: #A5B4FC;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    margin: 4px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    transition: all 0.2s ease;
+}
+
+.skill-badge:hover {
+    background: rgba(99, 102, 241, 0.2);
+    color: #FFFFFF;
+    border-color: rgba(99, 102, 241, 0.5);
+    transform: scale(1.05);
+}
+
+/* Verification State styling cards */
+.job-authentic {
+    border-left: 5px solid #10B981 !important;
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.04) 0%, rgba(17, 24, 39, 0.7) 100%) !important;
+}
+
+.job-authentic:hover {
+    border-color: #10B981 !important;
+    box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.15) !important;
+}
+
+.job-suspicious {
+    border-left: 5px solid #F59E0B !important;
+    background: linear-gradient(90deg, rgba(245, 158, 11, 0.04) 0%, rgba(17, 24, 39, 0.7) 100%) !important;
+}
+
+.job-suspicious:hover {
+    border-color: #F59E0B !important;
+    box-shadow: 0 15px 35px -10px rgba(245, 158, 11, 0.15) !important;
+}
+
+/* Metrics and Statistics Boxes */
+.metric-box {
+    text-align: center;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.metric-value {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #818CF8;
+    line-height: 1;
+}
+
+.metric-label {
+    font-size: 0.8rem;
+    color: #64748B;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-top: 8px;
+}
+
+/* Custom bullet lists for reasons */
+.reason-item {
+    font-size: 0.95rem;
+    color: #CBD5E1;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    padding-left: 5px;
+}

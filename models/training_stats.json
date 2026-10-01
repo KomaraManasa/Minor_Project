@@ -1,0 +1,32 @@
+{
+    "comparison": {
+        "Random Forest": {
+            "accuracy": 100.0,
+            "precision": 100.0,
+            "recall": 100.0,
+            "f1-score": 100.0
+        },
+        "Support Vector Machine": {
+            "accuracy": 100.0,
+            "precision": 100.0,
+            "recall": 100.0,
+            "f1-score": 100.0
+        },
+        "Logistic Regression": {
+            "accuracy": 100.0,
+            "precision": 100.0,
+            "recall": 100.0,
+            "f1-score": 100.0
+        },
+        "Naive Bayes": {
+            "accuracy": 100.0,
+            "precision": 100.0,
+            "recall": 100.0,
+            "f1-score": 100.0
+        }
+    },
+    "best_model": {
+        "name": "Random Forest",
+        "accuracy": 100.0
+    }
+}
