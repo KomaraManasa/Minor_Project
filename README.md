@@ -1,106 +1,153 @@
-# Smart Career Recommendation using Data-Driven Intelligence
+# Smart Career Recommendation
 
-An advanced, full-stack career assistant and security audit application. This system helps job seekers find open careers matching their skills parsed from PDF resumes, and checks the authenticity of job listings using machine learning algorithms trained on Kaggle's Fake Job Posting dataset.
+A career recommendation and job verification application built using Python and Streamlit. The system helps users find job opportunities based on skills extracted from PDF resumes and checks job postings using machine learning models trained on a fake job posting dataset.
 
----
+## Key Features
 
-## 🎯 Key Features
+1. Resume PDF Processing: Extracts text from PDF resumes and cleans the extracted content.
+2. Skill Extraction: Identifies relevant skills from the resume using NLP techniques.
+3. Job Matching: Uses the JSearch API to search for job postings based on extracted skills.
+4. Job Verification: Compares Random Forest, Support Vector Machine, Logistic Regression, and Naive Bayes models to classify job postings.
+5. Verification Details: Provides the prediction result along with supporting checks from the job posting.
+6. SQLite Database: Stores resume information, extracted skills, job searches, and verification history.
+7. Dashboard: Displays model evaluation results and previous verification information.
 
-1. **Resume PDF Processing**: Automatic text extraction and token scrubbing.
-2. **NLP Skill Miner**: Named entity matching to extract specific engineering competencies.
-3. **API-Driven Matching**: Queries JSearch endpoints for live job matching based on extracted skills.
-4. **Scam Classification Engine**: Compares Random Forest, Support Vector Machine, Logistic Regression, and Naive Bayes classifiers to predict whether a job description is legitimate or fraudulent.
-5. **Interactive Explanations**: Details regular-expression flags and ML confidence values explaining predictions.
-6. **SQLite Relational Logging**: Saves all resumes, skill tags, matched careers, and verification histories locally.
-7. **Visual Analytics Dashboard**: Draws interactive Plotly figures of model scores and verification distributions.
-
----
-
-## 📂 Project Structure
+## Project Structure
 
 ```text
 SmartCareerRecommendation/
-├── app.py                      # Main entrypoint setting up Streamlit configuration
-├── requirements.txt            # Project dependencies (Streamlit, PyPDF2, spacy, scikit-learn, etc.)
-├── .env.example                # Template for environment variables (API keys)
-├── README.md                   # Setup and usage guide
+├── app.py
+├── requirements.txt
+├── .env.example
+├── README.md
 ├── resume/
 │   ├── __init__.py
-│   ├── parser.py               # Extract text from PDFs using PyPDF2
-│   └── cleaner.py              # Text cleaning and preprocessing
+│   ├── parser.py
+│   └── cleaner.py
 ├── utils/
 │   ├── __init__.py
-│   └── nlp_skills.py           # NLP skill extraction using spaCy and NLTK
+│   └── nlp_skills.py
 ├── jobs/
 │   ├── __init__.py
-│   └── recommender.py          # RapidAPI JSearch connector for live job search
+│   └── recommender.py
 ├── verification/
 │   ├── __init__.py
-│   ├── trainer.py              # Training script comparing RF, SVM, LR, and NB models
-│   └── model.py                # Job description verification classifier wrapper
+│   ├── trainer.py
+│   └── model.py
 ├── database/
 │   ├── __init__.py
-│   └── db_handler.py           # SQLite database operations (resumes, skills, jobs, predictions)
+│   └── db_handler.py
 ├── assets/
-│   └── custom.css              # Custom styling for premium Streamlit UI
+│   └── custom.css
 └── data/
-    └── fake_job_postings.csv   # Dataset for training (automatically generated as mockup if missing)
-```
+    └── fake_job_postings.csv
+Installation and Setup
+1. Prerequisites
 
----
+Make sure Python 3.8 or a later version is installed.
 
-## ⚙️ Installation & Setup
+2. Install Dependencies
 
-### 1. Prerequisites
-Ensure you have **Python 3.8+** installed.
+Run:
 
-### 2. Install Dependencies
-Run the package manager to download libraries:
-```bash
 pip install -r requirements.txt
-```
-*Note: The system automatically checks and downloads NLTK resources and the spaCy `en_core_web_sm` model at first runtime.*
 
-### 3. API Setup
-1. Obtain a free JSearch API key by subscribing to JSearch on [RapidAPI](https://rapidapi.com/letscrape-6584-letscrape-free/api/jsearch).
-2. Copy `.env.example` to create a `.env` file in the root directory:
-   ```bash
-   cp .env.example .env
-   ```
-3. Open `.env` and fill in your RapidAPI Key:
-   ```text
-   RAPIDAPI_KEY=your_copied_api_key_here
-   ```
-*If this key is missing or not provided, the application will automatically fall back to serving high-quality mock jobs to ensure visual stability during live demonstrations.*
+The application uses Python libraries such as Streamlit, PyPDF2, spaCy, NLTK, scikit-learn, pandas, NumPy, requests, joblib, and Plotly.
 
-### 4. Training the Model
-For full production-grade accuracy:
-1. Download the **Fake Job Postings Dataset** (`fake_job_postings.csv`) from [Kaggle](https://www.kaggle.com/datasets/shivamb/real-or-fake-fake-jobposting-prediction).
-2. Place the CSV file in the `data/` folder as `data/fake_job_postings.csv`.
-3. Train the model by running the training pipeline script:
-   ```bash
-   python -m verification.trainer
-   ```
-*If you do not have the Kaggle dataset downloaded yet, running the script or launching the Streamlit app will automatically generate a structured, synthetic dataset inside `data/fake_job_postings.csv` and train the models on it, ensuring the application remains plug-and-play.*
+3. API Setup
 
----
+The application can use the JSearch API to search for live job postings.
 
-## 🚀 Running the Web Application
+Create a .env file in the project root and add your API key:
 
-Launch the Streamlit web server directly from the terminal:
-```bash
+RAPIDAPI_KEY=your_api_key_here
+
+The .env file is not included in the GitHub repository. The repository contains .env.example as a template.
+
+If the API key is not available, the application can use the available job data in the project for demonstration purposes.
+
+4. Training the Model
+
+The job verification model uses a fake job posting dataset for training.
+
+Place the dataset at:
+
+data/fake_job_postings.csv
+
+Then run:
+
+python -m verification.trainer
+
+The training script processes the dataset, converts the job posting text into TF-IDF features, trains multiple classification models, evaluates them, and saves the selected model and vectorizer in the models folder.
+
+The models compared are:
+
+Random Forest
+Support Vector Machine
+Logistic Regression
+Multinomial Naive Bayes
+
+The evaluation includes:
+
+Accuracy
+Precision
+Recall
+F1-score
+5. Running the Application
+
+Start the Streamlit application using:
+
 python -m streamlit run app.py
-```
 
-The application will launch and open in your default browser at `http://localhost:8501`.
+The application will open in the browser at:
 
----
+http://localhost:8501
+Application Workflow
+Upload a resume in PDF format.
+Extract and clean the resume text.
+Extract relevant skills from the resume.
+Search for job postings based on the extracted skills.
+Select a job posting for verification.
+Use the trained machine learning model to classify the job posting.
+View the verification result and previous results in the dashboard.
+Machine Learning
 
-## 📊 Evaluation & Metrics
-The training pipeline compiles classification metrics for four algorithms. On the synthetic dataset, accuracies are typically:
-- **Random Forest**: ~99% Accuracy
-- **Support Vector Machine**: ~97% Accuracy
-- **Logistic Regression**: ~95% Accuracy
-- **Naive Bayes**: ~91% Accuracy
+The verification module uses TF-IDF to convert job posting text into numerical features.
 
-You can view the exact evaluation metrics and comparative bar charts inside the **5_Dashboard** page in the sidebar.
+The following classification models are trained and compared:
+
+Random Forest
+Support Vector Machine
+Logistic Regression
+Multinomial Naive Bayes
+
+The model evaluation results are stored in the models folder along with the trained model and TF-IDF vectorizer.
+
+Database
+
+The project uses SQLite for local data storage.
+
+The database can store information related to:
+
+Resumes
+Extracted skills
+Job searches
+Job postings
+Verification results
+Project Technologies
+Python
+Streamlit
+PyPDF2
+spaCy
+NLTK
+scikit-learn
+pandas
+NumPy
+REST API
+SQLite
+Plotly
+Notes
+
+The project was developed as a student project to understand resume processing, NLP, API-based job searching, machine learning classification, and database operations.
+
+The machine learning results depend on the dataset used for training. Therefore, the verification result should be treated as a prediction based on the available training data and not as a guaranteed determination that a job posting is genuine or fraudulent.
